@@ -34,8 +34,8 @@ module.exports = function (mikser, context) {
 
 	if (context) {
 		let normalizeLinkWrapper = md.normalizeLink;
-		md.normalizeLink = (url) => normalizeLinkWrapper(mikser.runtime.findHref(context.entity, url).toString());
-		
+		md.normalizeLink = (url) => normalizeLinkWrapper(mikser.runtime.findHref(context.entity, url.split('#')[0]).toString() + url.split('#').length ? `#${url.split('#')[1]}` : '');
+				
 		context.markdownIt = function (content) {
 			if (!content) return '';
 			if (typeof content != 'string' && content != undefined) {
