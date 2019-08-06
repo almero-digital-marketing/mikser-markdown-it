@@ -7,7 +7,7 @@ let path = require('path');
 module.exports = function (mikser, context) {
 
 	let config = mikser.config['markdown-it'];
-	let options = _.clone(config);
+	let options = _.clone(config || {});
 	delete options.use;
 	let md = new MarkdownIt(options);
 
